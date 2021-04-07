@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838f828f2aa6178419f1c2156f2c39f5, type: 3}
+  m_Name: Board
+  m_EditorClassIdentifier: 
+  boardPieces:
+  - {fileID: 11400000, guid: 25f31c4b500a1374cb10b38aa8d7756d, type: 2}
+  - {fileID: 11400000, guid: 51a08d73a382a9744b8e52ea6c1a671e, type: 2}
+  - {fileID: 11400000, guid: cec2fa2d83fcbea47a60679a0ca750ef, type: 2}
+  - {fileID: 11400000, guid: 6a281d5348372594794a6d7a39a7d20c, type: 2}
+  - {fileID: 11400000, guid: 905bb6509ed386943aa22b7963ae9cc7, type: 2}
+  boardWidth: 8
+  boardHeight: 8
+  pieceSize: 80
+  pieceSpacing: 30
