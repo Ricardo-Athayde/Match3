@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace Bejeweled
 {
+    public enum GameState
+    {
+        Start,
+        Playing,
+        End
+    }
+
     public struct Int2
     {
         public int x,y;

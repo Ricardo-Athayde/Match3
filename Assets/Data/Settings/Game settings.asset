@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game settings
   m_EditorClassIdentifier: 
   gameDelay: 0.25
+  gameTime: 120
