@@ -15,6 +15,10 @@ namespace Bejeweled
 
         [HideInInspector]
         public int[,] curBoard { get; private set; } //Current game board
+
+        [HideInInspector]
+        public bool checkingMatches; //Checking if there are matches on the board
+        public bool interactable;
         #endregion
 
         #region Events
@@ -23,10 +27,6 @@ namespace Bejeweled
         public UnityEvent<PieceMovement> onPieceMovement; //Invoked whenever a piece moved from one place to another (Ex: dropping)
         public UnityEvent<Int2> onPieceRemoved; //Invoked whenever a piece is removed ftom the board.
         public UnityEvent<Int2> onPieceRemovedCombo; //Invoked whenever all matching pieces are removed from the board
-        #endregion
-
-        #region Private Variables
-        bool checkingMatches; //Checking if there are matches on the board
         #endregion
 
         //Creates a new board
@@ -61,8 +61,8 @@ namespace Bejeweled
         //Swap 2 pieces
         public void ChangePieces(PieceMovement movement)
         {
-            //Can't modify board while still checking for matches. 
-            if (checkingMatches) { return; }
+            //Can't modify board while still checking for matches and when it is not interactable            
+            if (checkingMatches || !interactable) { return; }
 
             //Invalid board position
             if (movement.Pos1.x > boardSettings.boardWidth - 1 || movement.Pos1.x < 0 ||
@@ -301,6 +301,11 @@ namespace Bejeweled
             {
                 return curBoard[pos.x, pos.y];
             }
+        }
+
+        public void SetInteractable(bool state)
+        {
+            interactable = state;
         }
 
 

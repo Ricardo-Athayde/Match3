@@ -16,6 +16,8 @@ namespace Bejeweled
         [HideInInspector]
         GameState gameState; //Current state of the game
 
+        [SerializeField] BoardController boardController;
+
         #region Events
         [Header("Events")]
         public UnityEvent onStartPlaying; //Called on Start Game
@@ -46,15 +48,24 @@ namespace Bejeweled
         //Decreases the game time and checks if the game has ended
         void PassGametime()
         {
-            if(gameState == GameState.Playing)
+            if (gameState == GameState.Playing)
             {
                 gameTime -= Time.deltaTime;
 
-                if(gameTime <= 0)
+                if (gameTime <= 0)
                 {
-                    EndGame();
+                    boardController.SetInteractable(false); //Cant make any more movements on the board
+                    if (!boardController.checkingMatches) //Waits until all combos are made
+                    {
+                        EndGame();
+                    }
                 }
             }
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
         }
     }
 }
