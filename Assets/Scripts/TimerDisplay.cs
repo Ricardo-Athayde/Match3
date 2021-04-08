@@ -7,11 +7,13 @@ namespace Bejeweled
 {
     public class TimerDisplay : MonoBehaviour
     {
+        [Header("Game References")]
         [SerializeField] GameSettings gameSettings;
         [SerializeField] GameManager gameManager;
+
+        [Header("UI References")]
         [SerializeField] Image timer;
 
-        // Update is called once per frame
         void Update()
         {
             timer.fillAmount = gameManager.gameTime / gameSettings.gameTime;

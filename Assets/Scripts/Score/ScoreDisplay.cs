@@ -7,9 +7,11 @@ namespace Bejeweled
 {
     public class ScoreDisplay : MonoBehaviour
     {
+        [Header("UI References")]
         [SerializeField] Text[] scoreTexts;
         [SerializeField] Text[] highscoreTexts;
 
+        //Updates every score display text
         public void UpdateScoreDisplay(int score)
         {
             foreach (Text txt in scoreTexts)
@@ -17,6 +19,8 @@ namespace Bejeweled
                 txt.text = "Score: " + Mathf.FloorToInt(score);
             }            
         }
+
+        //Updates every highscore display text
         public void UpdateHighscoreDisplay(int highscore)
         {
             foreach (Text txt in highscoreTexts)

@@ -7,37 +7,42 @@ namespace Bejeweled
 {
     public class ScoreController : MonoBehaviour
     {
-        int score;
-        int highscore;
-
+        #region Events    
+        [Header("Events")]
         public UnityEvent<int> onScoreChanged;
         public UnityEvent<int> onHighscoreChanged;
+        #endregion
+
+        #region Private Variables
+        int score; //Current score
+        int highscore;
+        #endregion
 
         void Start()
         {
+            //If there is a saved highscore, set it
             if (PlayerPrefs.HasKey("Highscore"))
             {
                 highscore = PlayerPrefs.GetInt("Highscore");
                 onHighscoreChanged?.Invoke(highscore);
             }
-            else
-            {
-                PlayerPrefs.SetInt("Highscore", score);
-            }
         }
 
+        //Increases the score based on a formula
         public void AddScore(Int2 scoreAndCombo)
         {
             score += scoreAndCombo.x * (scoreAndCombo.y);
             onScoreChanged?.Invoke(score);
         }
 
+        //Resets the current score to 0
         public void ResetScore()
         {
             score = 0;
             onScoreChanged?.Invoke(score);
         }
 
+        //Sets a new highscore if the current score is bigger the the previous highscore
         public void SaveHighScore()
         {
             if (highscore < score)

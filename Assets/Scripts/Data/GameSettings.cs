@@ -10,6 +10,7 @@ namespace Bejeweled
         [Tooltip("Controls animations and pacing of the game")]
         public float gameDelay;
 
+        [Tooltip("Time the player has before the game ends")]
         public float gameTime;
     }
 }

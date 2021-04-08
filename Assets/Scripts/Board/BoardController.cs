@@ -9,15 +9,16 @@ namespace Bejeweled
     public class BoardController : MonoBehaviour
     {
         #region Public Variables
+        [Header("Game References")]
         public BoardSettings boardSettings;
-
         public GameSettings gameSettings;
 
         [HideInInspector]
         public int[,] curBoard { get; private set; } //Current game board
+        #endregion
 
-
-        //Events
+        #region Events
+        [Header("Events")]
         public UnityEvent onBoardChanged;
         public UnityEvent<PieceMovement> onPieceMovement; //Invoked whenever a piece moved from one place to another (Ex: dropping)
         public UnityEvent<Int2> onPieceRemoved; //Invoked whenever a piece is removed ftom the board.
@@ -32,7 +33,6 @@ namespace Bejeweled
         public void CreateBoard()
         {
             if(curBoard == null) { curBoard = new int[boardSettings.boardWidth, boardSettings.boardHeight]; }
-
 
             if(boardSettings.boardPieces.Length <= 1) { Debug.LogError("Not enought avaliable pieces. There must be at least 2 pieces on the board settings."); return; }
 

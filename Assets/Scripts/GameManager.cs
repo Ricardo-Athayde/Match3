@@ -7,16 +7,20 @@ namespace Bejeweled
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Game References")]
         [SerializeField] GameSettings gameSettings;
 
         [HideInInspector]
-        public float gameTime;
+        public float gameTime { get; private set; }
 
         [HideInInspector]
-        GameState gameState;
+        GameState gameState; //Current state of the game
 
-        public UnityEvent onStartPlaying;
-        public UnityEvent onGameEnded;
+        #region Events
+        [Header("Events")]
+        public UnityEvent onStartPlaying; //Called on Start Game
+        public UnityEvent onGameEnded; //Called when there is no more time and the game ends
+        #endregion
 
         // Update is called once per frame
         void Update()
@@ -24,19 +28,22 @@ namespace Bejeweled
             PassGametime();
         }
 
+        //Starts a new game
         public void StartGame()
         {
             gameState = GameState.Playing;
-            gameTime = gameSettings.gameTime;
+            gameTime = gameSettings.gameTime; //Resets the game time
             onStartPlaying?.Invoke();
         }
 
+        //End the current game
         void EndGame()
         {
             gameState = GameState.End;
             onGameEnded?.Invoke();
         }
 
+        //Decreases the game time and checks if the game has ended
         void PassGametime()
         {
             if(gameState == GameState.Playing)

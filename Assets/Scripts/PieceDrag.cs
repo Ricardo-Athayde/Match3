@@ -10,18 +10,15 @@ namespace Bejeweled
     [RequireComponent(typeof(RectTransform))]
     public class PieceDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
-        #region Public Variables
-        //Board position of this piece
-        [HideInInspector]
-        public Int2 boardPos; 
+        #region Events   
+        [Header("Events")]
+        public UnityEvent<PieceMovement> onPieceMoved; //Invoked when the piece is dragged beyond a threshold
+        #endregion
 
-        //Invoked when the piece is dragged beyond a threshold
-        [HideInInspector]
-        public UnityEvent<PieceMovement> onPieceMoved;
+        #region Public Variables        
+        [HideInInspector] public Int2 boardPos; //Board position of this piece
 
-        //Original position of this piece
-        [HideInInspector]
-        public Vector2 originalPos;
+        [HideInInspector] public Vector2 originalPos; //Original position of this piece
         #endregion
 
         #region Private Variables
@@ -66,11 +63,13 @@ namespace Bejeweled
             Int2 movementDirection;
             Vector2 movementVector = dragPos - originalPos;
 
-            if (Mathf.Abs(movementVector.x) > Mathf.Abs(movementVector.y)) //Lef-Right
+            //Lef-Right
+            if (Mathf.Abs(movementVector.x) > Mathf.Abs(movementVector.y)) 
             {
                 movementDirection = movementVector.x > 0 ? new Int2(boardPos.x + 1, boardPos.y) : new Int2(boardPos.x -1, boardPos.y);
             }
-            else //Up-Down
+            //Up-Down
+            else
             {
                 movementDirection = movementVector.y > 0 ? new Int2(boardPos.x, boardPos.y - 1) : new Int2(boardPos.x, boardPos.y + 1);
             }

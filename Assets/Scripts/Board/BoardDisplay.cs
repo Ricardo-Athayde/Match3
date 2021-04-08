@@ -7,7 +7,7 @@ namespace Bejeweled
 {
     public class BoardDisplay : MonoBehaviour
     {
-        #region Public Variables
+        #region Private Show Inspector Variables
         [Header("Prefabs")]
         [SerializeField] GameObject boardGamePiece;
 
